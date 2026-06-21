@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0055ff;
+  --color-brand-blue-light: #3388ff;
+  --color-brand-blue-glow: rgba(0, 85, 255, 0.5);
+  
+  --color-brand-gold: #ffb700;
+  --color-brand-gold-light: #ffd700;
+  --color-brand-gold-glow: rgba(255, 183, 0, 0.5);
+  
+  --color-dark-bg: #08080a;
+  --color-dark-surface: #121216;
+  --color-dark-border: #22222a;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-gray-100 antialiased;
+  }
+}
