@@ -5,7 +5,8 @@ import { auth } from '../../firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import toast from 'react-hot-toast';
 
-const Auth = () => {
+const Auth = ({ adminLoginHint = false }) => {
+  // ... rest of component unchanged ...
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', password: '', phone: '', otp: '' });
   const [error, setError] = useState('');
@@ -89,38 +90,37 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
     
+    if (!isLogin && (!formData.name || !formData.email || !formData.password || !formData.phone)) {
+      return setError('Please fill in all details first.');
+    }
+
+    setLoading(true);
     let res;
+
     if (isLogin) {
       res = await login(formData.email, formData.password);
       setLoading(false);
       
       if (res.success) {
-        navigate('/admin');
+        if (adminLoginHint) {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
       } else {
         setError(res.message);
       }
     } else {
-      // REGISTER FLOW WITH FIREBASE OTP
-      try {
-        // 1. Verify the OTP with Firebase first
-        await window.confirmationResult.confirm(formData.otp);
-        
-        // 2. If successful, create the user in our backend DB
-        res = await register(formData.name, formData.email, formData.password, formData.phone);
-        
-        setLoading(false);
-        if (res.success) {
-          toast.success("Account created securely!");
-          navigate('/admin');
-        } else {
-          setError(res.message);
-        }
-      } catch (err) {
-        setLoading(false);
-        console.error("Verification Error:", err);
-        setError('Invalid or expired OTP. Please try again.');
+      // DEV MODE: Bypass Firebase OTP and directly register
+      res = await register(formData.name, formData.email, formData.password, formData.phone);
+      
+      setLoading(false);
+      if (res.success) {
+        toast.success("Account created successfully!");
+        navigate('/');
+      } else {
+        setError(res.message);
       }
     }
   };
@@ -147,7 +147,7 @@ const Auth = () => {
           </p>
         </div>
         
-        <form className="mt-8 space-y-6" onSubmit={!isLogin && !otpSent ? handleSendOtp : handleSubmit}>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded-md text-sm text-center">{error}</div>}
           
           <div className="space-y-4 rounded-md shadow-sm">
@@ -202,7 +202,7 @@ const Auth = () => {
           <div>
             <button type="submit" disabled={loading}
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-brand-blue hover:bg-brand-blue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue shadow-[0_0_15px_rgba(0,85,255,0.3)] transition-all cursor-pointer disabled:opacity-50">
-              {loading ? 'Processing...' : (isLogin ? 'Sign In' : (otpSent ? 'Verify & Create Account' : 'Send Firebase OTP'))}
+              {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
             </button>
             
             {!isLogin && otpSent && (

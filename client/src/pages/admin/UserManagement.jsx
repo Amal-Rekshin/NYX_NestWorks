@@ -15,7 +15,7 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data } = await API.get('/users');
+      const { data } = await API.get('/admin/users');
       setUsers(data);
     } catch (error) {
       console.error(error);
@@ -27,7 +27,7 @@ const UserManagement = () => {
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to remove this user from the system?')) {
       try {
-        await API.delete(`/users/${id}`);
+        await API.delete(`/admin/users/${id}`);
         toast.success('User removed successfully');
         fetchUsers();
       } catch (error) {

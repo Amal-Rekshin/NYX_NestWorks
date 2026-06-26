@@ -21,7 +21,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/properties', require('./routes/propertyRoutes'));
 app.use('/api/leads', require('./routes/leadRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Nyx NestWorks API is running' });

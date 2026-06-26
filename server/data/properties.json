@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Cozy Cottage",
+    "category": "construction",
+    "description": "A beautiful cottage in the countryside.",
+    "price": 250000,
+    "location": "Countryside",
+    "areaSqft": 1500,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "available",
+    "images": [],
+    "isFeatured": true
+  },
+  {
+    "title": "Modern Apartment",
+    "category": "sales",
+    "description": "A sleek downtown apartment.",
+    "price": 450000,
+    "location": "City Center",
+    "areaSqft": 900,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "status": "available",
+    "images": [],
+    "isFeatured": false
+  }
+]

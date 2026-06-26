@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Charlie",
+    "email": "charlie@example.com",
+    "phone": "5551112222",
+    "message": "Interested in the Cozy Cottage.",
+    "propertyTitle": "Cozy Cottage",
+    "status": "new"
+  },
+  {
+    "name": "Dana",
+    "email": "dana@example.com",
+    "phone": "5553334444",
+    "message": "Looking for a modern apartment.",
+    "propertyTitle": "Modern Apartment",
+    "status": "new"
+  }
+]

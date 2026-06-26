@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Home, Bath, BedDouble, MapPin } from 'lucide-react';
+import { Home, Bath, BedDouble, MapPin, Heart } from 'lucide-react';
 
+import { useState } from 'react';
 const PropertyCard = ({ property }) => {
+  const [likes, setLikes] = useState(property.likes || 0);
   return (
     <div className="bg-dark-surface border border-dark-border rounded-xl overflow-hidden hover:border-brand-blue transition-colors group">
       <div className="relative h-64 overflow-hidden">
         <img 
-          src={property.images && property.images[0] ? property.images[0] : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
+          src={property.thumbnail 
+            ? (property.thumbnail.startsWith('http') ? property.thumbnail : `http://localhost:5001${property.thumbnail}`)
+            : (property.images && property.images.length > 0 
+              ? (property.images[0].startsWith('http') ? property.images[0] : `http://localhost:5001${property.images[0]}`) 
+              : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')
+          } 
           alt={property.title || 'Property'}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
@@ -42,12 +49,26 @@ const PropertyCard = ({ property }) => {
         </div>
         
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-white">
-            ${property.price ? property.price.toLocaleString() : 'Contact Us'}
-          </div>
-          <Link to={`/property/${property._id || '1'}`} className="text-brand-gold hover:text-brand-gold-light font-medium flex items-center transition-colors">
-            View Details
-          </Link>
+            <div className="flex items-center justify-between gap-4">
+              <div className="text-2xl font-bold text-white">
+                ${property.price ? property.price.toLocaleString() : 'Contact Us'}
+              </div>
+              {property.category === 'sales' && (
+                <button onClick={async () => {
+                  try {
+                    const { data } = await API.post(`/properties/${property._id}/like`);
+                    setLikes(data.likes);
+                  } catch (err) {
+                    console.error('Like error', err);
+                  }
+                }} className="flex items-center text-brand-gold hover:text-brand-gold-light">
+                  <Heart size={20} className="mr-1" /> {likes}
+                </button>
+              )}
+            </div>
+            <Link to={`/property/${property._id || '1'}`} className="text-brand-gold hover:text-brand-gold-light font-medium flex items-center transition-colors">
+              View Details
+            </Link>
         </div>
       </div>
     </div>

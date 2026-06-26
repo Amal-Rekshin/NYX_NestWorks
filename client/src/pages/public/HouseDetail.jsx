@@ -61,8 +61,8 @@ const HouseDetail = () => {
         </div>
         
         <div className="rounded-2xl overflow-hidden h-[50vh] relative bg-dark-surface border border-dark-border">
-          {property.images && property.images.length > 0 ? (
-            <img src={`http://localhost:5001${property.images[0]}`} alt={property.title} className="w-full h-full object-cover" />
+          {(property.thumbnail || (property.images && property.images.length > 0)) ? (
+            <img src={(property.thumbnail || property.images[0]).startsWith('http') ? (property.thumbnail || property.images[0]) : `http://localhost:5001${property.thumbnail || property.images[0]}`} alt={property.title} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-500">No Image Available</div>
           )}
@@ -85,12 +85,37 @@ const HouseDetail = () => {
               <HomeIcon size={24} className="mr-3 text-brand-blue" />
               <span className="text-lg">{property.areaSqft || 0} sqft</span>
             </div>
+            {property.yearBuilt && (
+              <div className="flex items-center text-gray-300">
+                <span className="text-2xl mr-2 text-brand-blue">📅</span>
+                <span className="text-lg">Built {property.yearBuilt}</span>
+              </div>
+            )}
+            {property.garage && (
+              <div className="flex items-center text-gray-300">
+                <span className="text-2xl mr-2 text-brand-blue">🚗</span>
+                <span className="text-lg">{property.garage} Car Garage</span>
+              </div>
+            )}
           </div>
 
           <h2 className="text-2xl font-bold text-white mb-4">About this property</h2>
-          <p className="text-gray-400 text-lg leading-relaxed mb-12 whitespace-pre-line">
+          <p className="text-gray-400 text-lg leading-relaxed mb-8 whitespace-pre-line">
             {property.description}
           </p>
+
+          {property.amenities && (
+            <div className="mb-12">
+              <h3 className="text-xl font-bold text-white mb-4">Amenities</h3>
+              <div className="flex flex-wrap gap-2">
+                {property.amenities.split(',').map((amenity, index) => (
+                  <span key={index} className="px-4 py-2 bg-dark-bg border border-dark-border rounded-full text-gray-300 text-sm">
+                    {amenity.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Gallery Lock Logic */}
           <h2 className="text-2xl font-bold text-white mb-6">Full Gallery</h2>

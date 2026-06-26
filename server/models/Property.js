@@ -10,8 +10,13 @@ const propertySchema = new mongoose.Schema({
   bedrooms: { type: Number },
   bathrooms: { type: Number },
   status: { type: String, enum: ['available', 'sold', 'ongoing', 'completed'], default: 'available' },
+  thumbnail: { type: String }, // Separate thumbnail URL
   images: [{ type: String }], // Array of image URLs/paths
-  isFeatured: { type: Boolean, default: false }
+  yearBuilt: { type: Number },
+  garage: { type: Number }, // Garage capacity (e.g., 2 cars)
+  amenities: { type: String }, // Comma separated amenities
+  likes: { type: Number, default: 0 },
+  isFeatured: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Property', propertySchema);
