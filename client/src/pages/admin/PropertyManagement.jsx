@@ -120,12 +120,12 @@ const PropertyManagement = () => {
                         )}
                       </div>
                       {prop.title}
-                      {prop.isFeatured && <span className="text-brand-gold ml-2 text-lg">★</span>}
+                      {prop.isFeatured && <span className="text-brand-green ml-2 text-lg">★</span>}
                     </td>
                     {!isCategoryFilter && <td className="px-6 py-4 capitalize">{prop.category}</td>}
                     <td className="px-6 py-4">${prop.price?.toLocaleString()}</td>
                     <td className="px-6 py-4">
-                      <span className="px-2.5 py-1 rounded-full text-xs font-medium border border-brand-gold/30 text-brand-gold bg-brand-gold/10 capitalize">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-medium border border-brand-green/30 text-brand-green bg-brand-green/10 capitalize">
                         {prop.status}
                       </span>
                     </td>

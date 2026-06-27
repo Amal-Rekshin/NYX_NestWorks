@@ -97,7 +97,7 @@ const SplashScreen = ({ onComplete }) => {
               </motion.span>
               <motion.span
                 variants={textVariants}
-                className="text-brand-gold drop-shadow-[0_0_20px_rgba(255,183,0,0.8)]"
+                className="text-brand-green drop-shadow-[0_0_20px_rgba(255,183,0,0.8)]"
               >
                 NestWorks
               </motion.span>
@@ -131,7 +131,7 @@ const SplashScreen = ({ onComplete }) => {
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 rounded-full bg-brand-gold"
+                className="w-2 h-2 rounded-full bg-brand-green"
                 animate={{
                   y: ['0%', '-50%', '0%'],
                   opacity: [0.5, 1, 0.5]

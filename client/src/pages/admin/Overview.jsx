@@ -85,7 +85,7 @@ const Overview = () => {
                     </div>
                     <div className="w-full bg-dark-bg h-3 rounded-full overflow-hidden border border-dark-border">
                       <div 
-                        className={`h-full rounded-full ${categoryColors[cat._id] || 'bg-brand-gold'} transition-all duration-1000 ease-out`}
+                        className={`h-full rounded-full ${categoryColors[cat._id] || 'bg-brand-green'} transition-all duration-1000 ease-out`}
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>

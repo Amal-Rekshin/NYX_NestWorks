@@ -15,7 +15,7 @@ const Navbar = () => {
             <Link to="/" className="text-2xl font-bold tracking-tight">
               <span className="text-brand-blue drop-shadow-[0_0_8px_rgba(0,85,255,0.5)]">Nyx</span>
               <span className="text-white"> </span>
-              <span className="text-brand-gold drop-shadow-[0_0_8px_rgba(255,183,0,0.5)]">NestWorks</span>
+              <span className="text-brand-green drop-shadow-[0_0_8px_rgba(255,183,0,0.5)]">NestWorks</span>
             </Link>
           </div>
           
@@ -23,7 +23,7 @@ const Navbar = () => {
             <div className="ml-10 flex items-baseline space-x-8">
               <Link to="/construction" className="text-gray-300 hover:text-brand-blue transition-colors px-3 py-2 rounded-md font-medium">Construction</Link>
               <Link to="/plans" className="text-gray-300 hover:text-brand-blue transition-colors px-3 py-2 rounded-md font-medium">Plans & Designs</Link>
-              <Link to="/sales" className="text-gray-300 hover:text-brand-gold transition-colors px-3 py-2 rounded-md font-medium">Houses for Sale</Link>
+              <Link to="/sales" className="text-gray-300 hover:text-brand-green transition-colors px-3 py-2 rounded-md font-medium">Houses for Sale</Link>
             </div>
           </div>
           
@@ -74,7 +74,7 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/construction" className="text-gray-300 hover:text-brand-blue block px-3 py-2 rounded-md font-medium">Construction</Link>
             <Link to="/plans" className="text-gray-300 hover:text-brand-blue block px-3 py-2 rounded-md font-medium">Plans & Designs</Link>
-            <Link to="/sales" className="text-gray-300 hover:text-brand-gold block px-3 py-2 rounded-md font-medium">Houses for Sale</Link>
+            <Link to="/sales" className="text-gray-300 hover:text-brand-green block px-3 py-2 rounded-md font-medium">Houses for Sale</Link>
           </div>
           <div className="pt-4 pb-3 border-t border-dark-border">
             {user ? (

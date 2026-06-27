@@ -79,7 +79,7 @@ const UserManagement = () => {
                     <td className="px-6 py-4">
                       <span className={`px-2.5 py-1 rounded-full text-xs font-medium border capitalize ${
                         user.isAdmin 
-                          ? 'border-brand-gold/30 text-brand-gold bg-brand-gold/10' 
+                          ? 'border-brand-green/30 text-brand-green bg-brand-green/10' 
                           : 'border-brand-blue/30 text-brand-blue bg-brand-blue/10'
                       }`}>
                         {user.isAdmin ? 'Admin' : 'User'}

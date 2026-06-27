@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Home, Bath, BedDouble, MapPin, Heart } from 'lucide-react';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import API, { BASE_URL } from '../api';
+import { useAuth } from '../context/AuthContext';
+
 const PropertyCard = ({ property }) => {
+  const { user } = useAuth();
+  
   const [likes, setLikes] = useState(property.likes || 0);
+  const [hasLiked, setHasLiked] = useState(property.likedBy?.includes(user?._id) || false);
+
+  useEffect(() => {
+    setHasLiked(property.likedBy?.includes(user?._id) || false);
+  }, [user, property.likedBy]);
   return (
     <div className="bg-dark-surface border border-dark-border rounded-xl overflow-hidden hover:border-brand-blue transition-colors group">
       <div className="relative h-64 overflow-hidden">
@@ -18,7 +27,7 @@ const PropertyCard = ({ property }) => {
           alt={property.title || 'Property'}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-4 right-4 bg-dark-bg/90 backdrop-blur text-brand-gold px-3 py-1 rounded-full text-sm font-medium border border-brand-gold/30">
+        <div className="absolute top-4 right-4 bg-dark-bg/90 backdrop-blur text-brand-green px-3 py-1 rounded-full text-sm font-medium border border-brand-green/30">
           {property.status ? property.status.charAt(0).toUpperCase() + property.status.slice(1) : 'Available'}
         </div>
       </div>
@@ -55,19 +64,25 @@ const PropertyCard = ({ property }) => {
                 ${property.price ? property.price.toLocaleString() : 'Contact Us'}
               </div>
               {property.category === 'sales' && (
-                <button onClick={async () => {
+                <button onClick={async (e) => {
+                  e.preventDefault();
+                  if (!user) {
+                    alert("Please login to like properties");
+                    return;
+                  }
                   try {
                     const { data } = await API.post(`/properties/${property._id}/like`);
                     setLikes(data.likes);
+                    setHasLiked(data.likedBy?.includes(user._id));
                   } catch (err) {
                     console.error('Like error', err);
                   }
-                }} className="flex items-center text-brand-gold hover:text-brand-gold-light">
-                  <Heart size={20} className="mr-1" /> {likes}
+                }} className={`flex items-center hover:text-brand-green-light transition-colors ${hasLiked ? 'text-brand-green' : 'text-gray-400'}`}>
+                  <Heart size={20} className="mr-1" fill={hasLiked ? 'currentColor' : 'none'} /> {likes}
                 </button>
               )}
             </div>
-            <Link to={`/property/${property._id || '1'}`} className="text-brand-gold hover:text-brand-gold-light font-medium flex items-center transition-colors">
+            <Link to={`/property/${property._id || '1'}`} className="text-brand-green hover:text-brand-green-light font-medium flex items-center transition-colors">
               View Details
             </Link>
         </div>

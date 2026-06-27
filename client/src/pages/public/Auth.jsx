@@ -190,7 +190,7 @@ const Auth = ({ adminLoginHint = false }) => {
                 <label htmlFor="otp" className="sr-only">6-Digit OTP</label>
                 <input id="otp" name="otp" type="text" required={otpSent} maxLength={6}
                   value={formData.otp} onChange={e => setFormData({...formData, otp: e.target.value})}
-                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-brand-gold/50 bg-dark-bg text-white placeholder-gray-500 focus:outline-none focus:ring-brand-gold focus:border-brand-gold focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-brand-green/50 bg-dark-bg text-white placeholder-gray-500 focus:outline-none focus:ring-brand-green focus:border-brand-green focus:z-10 sm:text-sm"
                   placeholder="Enter 6-Digit SMS Code" />
               </div>
             )}

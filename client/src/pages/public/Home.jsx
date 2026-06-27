@@ -34,7 +34,7 @@ const Home = () => {
             Build Your Dream With <br/>
             <span className="text-brand-blue drop-shadow-[0_0_15px_rgba(0,85,255,0.5)]">Nyx</span>
             <span className="text-white"> </span>
-            <span className="text-brand-gold drop-shadow-[0_0_15px_rgba(255,183,0,0.5)]">NestWorks</span>
+            <span className="text-brand-green drop-shadow-[0_0_15px_rgba(255,183,0,0.5)]">NestWorks</span>
           </h1>
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
             Premium construction, innovative designs, and exclusive homes for sale. We turn blueprints into breathtaking reality.
@@ -43,7 +43,7 @@ const Home = () => {
             <Link to="/construction" className="px-8 py-4 bg-brand-blue text-white font-semibold rounded-md hover:bg-brand-blue-light transition-colors shadow-[0_0_20px_rgba(0,85,255,0.4)] text-lg cursor-pointer">
               Explore Our Work
             </Link>
-            <Link to="/sales" className="px-8 py-4 border border-brand-gold text-brand-gold font-semibold rounded-md hover:bg-brand-gold hover:text-dark-bg transition-colors shadow-[0_0_15px_rgba(255,183,0,0.2)] text-lg cursor-pointer">
+            <Link to="/sales" className="px-8 py-4 border border-brand-green text-brand-green font-semibold rounded-md hover:bg-brand-green hover:text-dark-bg transition-colors shadow-[0_0_15px_rgba(255,183,0,0.2)] text-lg cursor-pointer">
               View Houses For Sale
             </Link>
           </div>
@@ -54,7 +54,7 @@ const Home = () => {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4 text-white">Featured Properties</h2>
-          <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full shadow-[0_0_10px_rgba(255,183,0,0.5)]"></div>
+          <div className="w-24 h-1 bg-brand-green mx-auto rounded-full shadow-[0_0_10px_rgba(255,183,0,0.5)]"></div>
         </div>
         
         {loading ? (
@@ -100,8 +100,8 @@ const Home = () => {
             </Link>
             
             {/* Sales */}
-            <Link to="/sales" className="bg-dark-bg border border-dark-border rounded-xl p-8 hover:border-brand-gold transition-colors group cursor-pointer block">
-              <div className="w-14 h-14 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors">
+            <Link to="/sales" className="bg-dark-bg border border-dark-border rounded-xl p-8 hover:border-brand-green transition-colors group cursor-pointer block">
+              <div className="w-14 h-14 bg-brand-green/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-green/20 transition-colors">
                 <span className="text-3xl">🔑</span>
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Houses For Sale</h3>

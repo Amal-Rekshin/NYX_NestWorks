@@ -2,9 +2,11 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 
+const URI = 'https://nyx-nestworks.onrender.com'
+
 async function test() {
   fs.writeFileSync('dummy_axios.jpg', 'fake image data');
-  const loginRes = await axios.post('http://localhost:5001/api/auth/login', {
+  const loginRes = await axios.post(`${URI}/api/auth/login`, {
     email: 'admin@nyxnestworks.com',
     password: 'AdminPassword2026!'
   });
@@ -21,7 +23,7 @@ async function test() {
   }
 
   try {
-    const res = await axios.post('http://localhost:5001/api/properties', data, {
+    const res = await axios.post(`${URI}/api/properties`, data, {
       headers: { 
         Authorization: `Bearer ${token}` 
       }

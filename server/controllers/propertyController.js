@@ -95,14 +95,28 @@ const deleteProperty = async (req, res) => {
   }
 };
 
-// Increment likes for a property
+// Toggle like for a property
 const likeProperty = async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
     if (!property) return res.status(404).json({ message: 'Property not found' });
-    property.likes = (property.likes || 0) + 1;
+    
+    // Ensure likedBy is an array
+    if (!property.likedBy) property.likedBy = [];
+    
+    const userId = req.user._id.toString();
+    const index = property.likedBy.findIndex(id => id.toString() === userId);
+    
+    if (index === -1) {
+      property.likedBy.push(userId);
+    } else {
+      property.likedBy.splice(index, 1);
+    }
+    
+    property.likes = property.likedBy.length;
     await property.save();
-    res.json({ likes: property.likes });
+    
+    res.json({ likes: property.likes, likedBy: property.likedBy });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

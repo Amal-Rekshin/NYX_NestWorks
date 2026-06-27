@@ -156,7 +156,7 @@ const HouseDetail = () => {
             
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="w-full py-4 mb-4 bg-brand-gold text-dark-bg font-bold rounded-md hover:bg-brand-gold-light transition-colors shadow-[0_0_15px_rgba(255,183,0,0.3)] text-lg cursor-pointer">
+              className="w-full py-4 mb-4 bg-brand-green text-dark-bg font-bold rounded-md hover:bg-brand-green-light transition-colors shadow-[0_0_15px_rgba(255,183,0,0.3)] text-lg cursor-pointer">
               Express Interest
             </button>
             <button 

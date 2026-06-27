@@ -16,6 +16,7 @@ const propertySchema = new mongoose.Schema({
   garage: { type: Number }, // Garage capacity (e.g., 2 cars)
   amenities: { type: String }, // Comma separated amenities
   likes: { type: Number, default: 0 },
+  likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   isFeatured: { type: Boolean, default: false },
 }, { timestamps: true });
 

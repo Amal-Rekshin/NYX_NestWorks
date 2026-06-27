@@ -189,7 +189,7 @@ const PropertyForm = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
             <div className="p-6 border border-dark-border rounded-xl bg-dark-bg/50">
-              <label className="block text-base font-medium text-brand-gold mb-4">Thumbnail Image (Cover)</label>
+              <label className="block text-base font-medium text-brand-green mb-4">Thumbnail Image (Cover)</label>
               {existingThumbnail && (
                 <div className="relative w-40 h-40 mb-4 border border-dark-border rounded-lg overflow-hidden group">
                   <img src={existingThumbnail.startsWith('http') ? existingThumbnail : `${BASE_URL}${existingThumbnail}`} alt="Thumbnail" className="w-full h-full object-cover" />
@@ -198,7 +198,7 @@ const PropertyForm = () => {
                   </button>
                 </div>
               )}
-              <input type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files)} className="w-full text-gray-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-brand-gold file:text-dark-bg hover:file:bg-yellow-500 cursor-pointer" />
+              <input type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files)} className="w-full text-gray-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-brand-green file:text-dark-bg hover:file:bg-yellow-500 cursor-pointer" />
               {isEditing && <p className="text-xs text-gray-500 mt-3">Note: Uploading a new thumbnail completely replaces the existing one.</p>}
             </div>
 

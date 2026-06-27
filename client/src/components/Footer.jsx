@@ -9,7 +9,7 @@ const Footer = () => {
             <Link to="/" className="text-2xl font-bold tracking-tight inline-block mb-4">
               <span className="text-brand-blue drop-shadow-[0_0_8px_rgba(0,85,255,0.5)]">Nyx</span>
               <span className="text-white"> </span>
-              <span className="text-brand-gold drop-shadow-[0_0_8px_rgba(255,183,0,0.5)]">NestWorks</span>
+              <span className="text-brand-green drop-shadow-[0_0_8px_rgba(255,183,0,0.5)]">NestWorks</span>
             </Link>
             <p className="text-gray-400 max-w-sm">
               Building the future with uncompromising quality. Premium construction, innovative plans, and luxury homes for sale.
@@ -21,7 +21,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/construction" className="text-gray-400 hover:text-brand-blue transition-colors">Construction</Link></li>
               <li><Link to="/plans" className="text-gray-400 hover:text-brand-blue transition-colors">Plans & Designs</Link></li>
-              <li><Link to="/sales" className="text-gray-400 hover:text-brand-gold transition-colors">Houses for Sale</Link></li>
+              <li><Link to="/sales" className="text-gray-400 hover:text-brand-green transition-colors">Houses for Sale</Link></li>
             </ul>
           </div>
           

@@ -9,7 +9,7 @@ const LoadingSpinner = ({ message = "Loading...", fullScreen = false }) => {
         <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-blue animate-[spin_2s_linear_infinite] shadow-[0_0_15px_rgba(0,85,255,0.5)]"></div>
         
         {/* Middle Glowing Ring (Spins Counter-Clockwise) */}
-        <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-brand-gold animate-[spin_1.5s_linear_infinite_reverse] shadow-[0_0_15px_rgba(255,183,0,0.3)]"></div>
+        <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-brand-green animate-[spin_1.5s_linear_infinite_reverse] shadow-[0_0_15px_rgba(255,183,0,0.3)]"></div>
         
         {/* Inner Circle / Logo */}
         <div className="absolute inset-4 bg-dark-surface border border-dark-border rounded-full flex items-center justify-center z-10 overflow-hidden shadow-inner">

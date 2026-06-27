@@ -96,7 +96,7 @@ const LeadManagement = () => {
           {[
             { id: 'all', label: 'All Leads', count: stats.total },
             { id: 'new', label: 'New', count: stats.new, color: 'text-brand-blue' },
-            { id: 'contacted', label: 'Contacted', count: stats.contacted, color: 'text-brand-gold' },
+            { id: 'contacted', label: 'Contacted', count: stats.contacted, color: 'text-brand-green' },
             { id: 'closed', label: 'Closed', count: stats.closed, color: 'text-green-500' }
           ].map(tab => (
             <button
@@ -170,7 +170,7 @@ const LeadManagement = () => {
                     {/* Status Badge */}
                     <span className={`flex items-center px-3 py-1 rounded-full text-xs font-semibold border uppercase tracking-wider
                       ${lead.status === 'new' ? 'border-brand-blue/40 text-brand-blue bg-brand-blue/10 shadow-[0_0_10px_rgba(0,85,255,0.2)]' : 
-                        lead.status === 'contacted' ? 'border-brand-gold/40 text-brand-gold bg-brand-gold/10' : 
+                        lead.status === 'contacted' ? 'border-brand-green/40 text-brand-green bg-brand-green/10' : 
                         'border-green-500/40 text-green-500 bg-green-500/10'}`}
                     >
                       {lead.status === 'new' && <span className="w-1.5 h-1.5 rounded-full bg-brand-blue mr-2 animate-pulse" />}
@@ -189,7 +189,7 @@ const LeadManagement = () => {
                         <Calendar size={14} className="mr-1" /> {new Date(lead.createdAt).toLocaleDateString()}
                       </span>
                       <span className="text-gray-700 mx-2">•</span>
-                      <div className="flex items-center text-brand-gold">
+                      <div className="flex items-center text-brand-green">
                         {lead.propertyId.category === 'construction' && <Building2 size={14} className="mr-1.5" />}
                         {lead.propertyId.category === 'sales' && <Home size={14} className="mr-1.5" />}
                         {lead.propertyId.category === 'plans' && <LayoutTemplate size={14} className="mr-1.5" />}
@@ -204,7 +204,7 @@ const LeadManagement = () => {
                   {lead.status !== 'contacted' && lead.status !== 'closed' && (
                     <button 
                       onClick={() => updateStatus(lead._id, 'contacted')}
-                      className="group flex items-center justify-center w-full px-5 py-3 bg-transparent border-2 border-brand-gold/80 text-brand-gold rounded-xl text-sm font-bold transition-all hover:bg-brand-gold hover:text-black hover:shadow-[0_0_15px_rgba(255,183,0,0.4)]"
+                      className="group flex items-center justify-center w-full px-5 py-3 bg-transparent border-2 border-brand-green/80 text-brand-green rounded-xl text-sm font-bold transition-all hover:bg-brand-green hover:text-black hover:shadow-[0_0_15px_rgba(255,183,0,0.4)]"
                     >
                       Mark Contacted
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
