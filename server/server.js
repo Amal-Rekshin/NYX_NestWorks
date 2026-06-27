@@ -23,8 +23,22 @@ app.use('/api/properties', require('./routes/propertyRoutes'));
 app.use('/api/leads', require('./routes/leadRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
+const mongoose = require('mongoose');
+
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Nyx NestWorks API is running' });
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+  res.json({ 
+    status: 'ok', 
+    message: 'Nyx NestWorks API is running',
+    timestamp: new Date().toISOString(),
+    uptime: Math.floor(process.uptime()) + ' seconds',
+    database: dbStatus,
+    memory: {
+      rss: Math.round(process.memoryUsage().rss / 1024 / 1024) + ' MB',
+      heapTotal: Math.round(process.memoryUsage().heapTotal / 1024 / 1024) + ' MB',
+      heapUsed: Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + ' MB'
+    }
+  });
 });
 
 // Start Server
