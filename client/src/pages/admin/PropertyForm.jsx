@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { X, ArrowLeft } from 'lucide-react';
-import API from '../../api';
+import API, { BASE_URL } from '../../api';
 import { toast } from 'react-hot-toast';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PropertyForm = () => {
   const { id } = useParams();
@@ -96,7 +97,7 @@ const PropertyForm = () => {
     }
   };
 
-  if (loading) return <div className="text-white p-8">Loading property details...</div>;
+  if (loading) return <LoadingSpinner message="Loading property details..." />;
 
   return (
     <div className="max-w-5xl mx-auto pb-12">
@@ -191,7 +192,7 @@ const PropertyForm = () => {
               <label className="block text-base font-medium text-brand-gold mb-4">Thumbnail Image (Cover)</label>
               {existingThumbnail && (
                 <div className="relative w-40 h-40 mb-4 border border-dark-border rounded-lg overflow-hidden group">
-                  <img src={existingThumbnail.startsWith('http') ? existingThumbnail : `http://localhost:5001${existingThumbnail}`} alt="Thumbnail" className="w-full h-full object-cover" />
+                  <img src={existingThumbnail.startsWith('http') ? existingThumbnail : `${BASE_URL}${existingThumbnail}`} alt="Thumbnail" className="w-full h-full object-cover" />
                   <button type="button" onClick={() => setExistingThumbnail('')} className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                     <X size={16} />
                   </button>
@@ -207,7 +208,7 @@ const PropertyForm = () => {
                 <div className="flex flex-wrap gap-3 mb-4">
                   {existingImages.map((img, idx) => (
                     <div key={idx} className="relative w-24 h-24 border border-dark-border rounded-md overflow-hidden group">
-                      <img src={img.startsWith('http') ? img : `http://localhost:5001${img}`} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
+                      <img src={img.startsWith('http') ? img : `${BASE_URL}${img}`} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
                       <button type="button" onClick={() => setExistingImages(existingImages.filter((_, i) => i !== idx))} className="absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                         <X size={14} />
                       </button>

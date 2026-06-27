@@ -3,6 +3,7 @@ import { Trash2, User as UserIcon } from 'lucide-react';
 import API from '../../api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -37,7 +38,7 @@ const UserManagement = () => {
     }
   };
 
-  if (loading) return <div className="text-white p-8">Loading users...</div>;
+  if (loading) return <LoadingSpinner message="Loading users..." />;
 
   return (
     <div>

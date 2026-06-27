@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import API from '../../api';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const Overview = () => {
   const [stats, setStats] = useState({
@@ -37,7 +38,7 @@ const Overview = () => {
     'sales': 'bg-green-500'
   };
 
-  if (loading) return <div className="text-white p-8">Loading dashboard...</div>;
+  if (loading) return <LoadingSpinner message="Loading dashboard..." />;
 
   return (
     <div>

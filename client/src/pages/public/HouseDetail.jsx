@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, BedDouble, Bath, Home as HomeIcon, Lock, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import API from '../../api';
+import API, { BASE_URL } from '../../api';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const HouseDetail = () => {
   const { id } = useParams();
@@ -46,7 +47,7 @@ const HouseDetail = () => {
     }
   };
 
-  if (loading) return <div className="min-h-screen flex justify-center items-center text-white">Loading property details...</div>;
+  if (loading) return <LoadingSpinner message="Loading property details..." fullScreen={true} />;
   if (!property) return <div className="min-h-screen flex justify-center items-center text-white">Property not found.</div>;
 
   return (
@@ -62,7 +63,7 @@ const HouseDetail = () => {
         
         <div className="rounded-2xl overflow-hidden h-[50vh] relative bg-dark-surface border border-dark-border">
           {(property.thumbnail || (property.images && property.images.length > 0)) ? (
-            <img src={(property.thumbnail || property.images[0]).startsWith('http') ? (property.thumbnail || property.images[0]) : `http://localhost:5001${property.thumbnail || property.images[0]}`} alt={property.title} className="w-full h-full object-cover" />
+            <img src={(property.thumbnail || property.images[0]).startsWith('http') ? (property.thumbnail || property.images[0]) : `${BASE_URL}${property.thumbnail || property.images[0]}`} alt={property.title} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-500">No Image Available</div>
           )}
@@ -122,7 +123,7 @@ const HouseDetail = () => {
           {user ? (
             <div className="grid grid-cols-2 gap-4">
               {property.images && property.images.length > 1 ? property.images.slice(1).map((img, i) => (
-                <img key={i} src={`http://localhost:5001${img}`} alt="Gallery" className="rounded-xl w-full h-64 object-cover" />
+                <img key={i} src={img.startsWith('http') ? img : `${BASE_URL}${img}`} alt="Gallery" className="rounded-xl w-full h-64 object-cover" />
               )) : (
                 <p className="text-gray-500 col-span-2">No additional images in gallery.</p>
               )}

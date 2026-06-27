@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Image as ImageIcon, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import API from '../../api';
+import API, { BASE_URL } from '../../api';
 import { toast } from 'react-hot-toast';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PropertyManagement = () => {
   const [properties, setProperties] = useState([]);
@@ -28,6 +29,7 @@ const PropertyManagement = () => {
       setProperties(data);
     } catch (error) {
       console.error(error);
+      toast.error(error.response?.data?.message || 'Failed to fetch properties');
     } finally {
       setLoading(false);
     }
@@ -68,7 +70,7 @@ const PropertyManagement = () => {
       ? currentPath.charAt(0).toUpperCase() + currentPath.slice(1) + ' Management'
       : 'All Properties';
 
-  if (loading) return <div className="text-white p-8">Loading properties...</div>;
+  if (loading) return <LoadingSpinner message="Loading properties..." />;
 
   return (
     <div>
@@ -112,7 +114,7 @@ const PropertyManagement = () => {
                     <td className="px-6 py-4 font-medium text-white flex items-center gap-3">
                       <div className="w-10 h-10 rounded-md bg-dark-bg flex items-center justify-center overflow-hidden border border-dark-border">
                         {(prop.thumbnail || (prop.images && prop.images.length > 0)) ? (
-                          <img src={(prop.thumbnail || prop.images[0]).startsWith('http') ? (prop.thumbnail || prop.images[0]) : `http://localhost:5001${prop.thumbnail || prop.images[0]}`} className="w-full h-full object-cover" alt="" />
+                          <img src={(prop.thumbnail || prop.images[0]).startsWith('http') ? (prop.thumbnail || prop.images[0]) : `${BASE_URL}${prop.thumbnail || prop.images[0]}`} className="w-full h-full object-cover" alt="" />
                         ) : (
                           <ImageIcon size={16} className="text-gray-500" />
                         )}

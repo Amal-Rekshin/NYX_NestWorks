@@ -1,12 +1,13 @@
 import { Navigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LayoutDashboard, Building2, LayoutTemplate, Home, Users, LogOut, MessageSquare, CheckCircle } from 'lucide-react';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const DashboardLayout = () => {
   const { user, loading, logout } = useAuth();
   const location = useLocation();
 
-  if (loading) return <div className="min-h-screen bg-dark-bg text-white flex items-center justify-center">Loading...</div>;
+  if (loading) return <LoadingSpinner fullScreen={true} />;
 
   if (!user || user.role !== 'admin') {
     return <Navigate to="/auth" />;

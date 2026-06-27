@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Mail, Phone, Calendar, CheckCircle2, Search, Filter, MessageSquare, ArrowRight, Home, Building2, LayoutTemplate } from 'lucide-react';
 import API from '../../api';
 import toast from 'react-hot-toast';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const LeadManagement = () => {
   const [leads, setLeads] = useState([]);
@@ -60,11 +61,7 @@ const LeadManagement = () => {
     closed: leads.filter(l => l.status === 'closed').length
   };
 
-  if (loading) return (
-    <div className="flex h-full items-center justify-center">
-      <div className="w-12 h-12 rounded-full border-4 border-dark-border border-t-brand-blue animate-spin"></div>
-    </div>
-  );
+  if (loading) return <LoadingSpinner message="Loading leads..." fullScreen={true} />;
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 pb-12">

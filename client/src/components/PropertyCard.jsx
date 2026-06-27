@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Home, Bath, BedDouble, MapPin, Heart } from 'lucide-react';
 
 import { useState } from 'react';
+import API, { BASE_URL } from '../api';
 const PropertyCard = ({ property }) => {
   const [likes, setLikes] = useState(property.likes || 0);
   return (
@@ -9,9 +10,9 @@ const PropertyCard = ({ property }) => {
       <div className="relative h-64 overflow-hidden">
         <img 
           src={property.thumbnail 
-            ? (property.thumbnail.startsWith('http') ? property.thumbnail : `http://localhost:5001${property.thumbnail}`)
+            ? (property.thumbnail.startsWith('http') ? property.thumbnail : `${BASE_URL}${property.thumbnail}`)
             : (property.images && property.images.length > 0 
-              ? (property.images[0].startsWith('http') ? property.images[0] : `http://localhost:5001${property.images[0]}`) 
+              ? (property.images[0].startsWith('http') ? property.images[0] : `${BASE_URL}${property.images[0]}`) 
               : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')
           } 
           alt={property.title || 'Property'}

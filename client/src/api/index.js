@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5001/api' });
+export const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
+const API = axios.create({ baseURL: `${BASE_URL}/api` });
 
 API.interceptors.request.use((req) => {
   const userInfo = localStorage.getItem('userInfo');

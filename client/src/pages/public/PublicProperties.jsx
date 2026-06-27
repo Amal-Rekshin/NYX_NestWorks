@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import API from '../../api';
 import PropertyCard from '../../components/PropertyCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PublicProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -69,9 +70,7 @@ const PublicProperties = () => {
       {/* Properties Grid */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
-          </div>
+          <LoadingSpinner message="Loading properties..." />
         ) : properties.length === 0 ? (
           <div className="text-center py-20 border border-dark-border rounded-xl bg-dark-surface/50">
             <div className="text-4xl mb-4">🏗️</div>
